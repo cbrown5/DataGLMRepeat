@@ -13,16 +13,14 @@ This package includes tools for:
 
 To install this package use:
 
-'remotes::install_github("cbrown5/DataGLMRepeat")
+`remotes::install_github("cbrown5/DataGLMRepeat")`
 
-This package also has some vignette guides to model checking. 
-I have endless troubles getting vignettes to work, but you can try: 
+This package also has some vignette guides to model checking, to access those do: 
 
 `remotes::install_github("cbrown5/DataGLMRepeat", build_vignettes = TRUE)`
 
-Then to get started see `vignette("glm-model-checking")` and `vignette("with_groups")`. 
+Then to get started in R see `vignette("checking-multiple-models")` and `vignette("with_groups")`. 
 
-If the vignette's didn't install, then check out the .html files in the /vignettes directory. 
  
 TODO:
 Add vignette with advice on checking spatial residuals, 
