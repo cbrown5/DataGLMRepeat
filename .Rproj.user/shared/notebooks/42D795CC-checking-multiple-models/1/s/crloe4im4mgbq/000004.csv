@@ -1,0 +1,7 @@
+"0","    m1 <- glm(formula(form),
+              family = family,
+              data = dat)
+"
+"2","Error in UseMethod(""family"") : 
+  no applicable method for 'family' applied to an object of class ""NULL""
+"

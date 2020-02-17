@@ -1,0 +1,17 @@
+Package: ModelTools
+Type: Package
+Title: A few handy tools for ecostats modelling
+Version: 1.0
+Date: 2020-02-12
+Author: Christopher James Brown
+Maintainer: Chris Brown <christo.j.brown@gmail.com>
+Description: These are some basic tools for ecostats I commonly use in my own
+    work.
+Suggests: sf,
+    MASS, 
+    knitr, 
+    dplyr, 
+    purrr, 
+    VignetteBuilder
+License: MIT + file LICENSE
+RoxygenNote: 7.0.2

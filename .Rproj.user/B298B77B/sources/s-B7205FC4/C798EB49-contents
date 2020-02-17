@@ -1,0 +1,152 @@
+---
+title: "glm-model-checking"
+author: "CJ Brown"
+date: "15 February 2020"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE, results = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+## Example of model checking 
+
+### Simulate some data 
+ 
+```{r}
+n <- 50
+a <- 1
+beta <- cbind(1,2)
+x <- rbind(runif(n), runif(n))
+linpred <- a + beta %*% x
+dat <- data.frame(x1 = x[1,],
+                  x2 = x[2,], 
+                  y = rpois(n, exp(linpred)))
+```
+
+### Fit a model 
+
+```{r}
+library(brms)
+library(patchwork)
+
+m1 <- brm(y ~ x1 + x2, data = dat, 
+           family = "poisson")
+
+ce <- conditional_effects(m1)
+
+plot(ce, plot = FALSE)[[1]] | plot(ce, plot = FALSE)[[2]]
+```
+
+### Check model assumptions 
+
+```{r}
+library(ModelTools)
+
+dat <- dplyr::bind_cols(dat, data.frame(predict(m1)))
+m1_resids <- with(dat, ds_resids(y, Estimate, family = "poisson"))
+```
+
+
+### Fit multiple models 
+
+The below example fits Bayesian GLMs to the above data, trying different combinations of covariates, families and priors. 
+
+First we create a data frame of all combinations of formulas, priors and families. We use `expand.grid` to do this: 
+
+```{r}
+dfsim <- expand.grid(family = c("poisson", "negbinomial"),
+                     form = c("y~ x1", "y~x2", "y ~x1 + x2"), 
+                     prior = c("normal(0, 10)", 
+                               "normal(0, 0.5)"),
+                     stringsAsFactors = FALSE) %>%
+  mutate(ID = 1:n()) %>%
+  as_tibble()
+```
+
+We included an `ID` variable that is unique by rows, because we want to run one model for every row. 
+
+Now we use `with_groups` to loop over all the `ID` values (i.e. every row of `dfsim`). We could also use `lapply` or `purrr::pmap` to do this, but I use `with_groups` so I can use an R expression, rather than writing a function. 
+
+
+```{r}
+
+#Use with_groups on ID to loop over every row
+# of dfsim
+dout <- dfsim %>%
+  group_by(ID) %>% 
+  with_groups({
+    m1 <- brm(formula(form), data = dat,
+    family = family,
+    prior = prior_string(prior,
+    class = "b"))
+    # m1 <- glm(formula(form), data = dat,
+              # family = "poisson")
+    
+    tibble(model = list(m1)) #save as list object in named tibble
+  }) %>%
+  bind_rows() %>%
+   bind_cols(dfsim, .)
+  
+```
+
+Another approach would be to create components of the formula with individual variables then you could use `expand.grid` to create all combindations of formulas. 
+
+We can then do model checking and extract coefs either within the above expression or within a new expression. Here is an example
+
+```{r eval = FALSE}
+library(ggplot2)
+dsplots <- dout %>%
+  group_by(ID) %>%
+  with_groups({
+    #Get shape param mean
+    if (family == "negbinomial"){
+      shape <- summary(model[[1]])$spec_pars[1,1]
+    } else {
+      shape <- NULL
+    }
+    
+    resids <- ds_resids(dat$y, 
+                        #Note Mean estimate is in col 1 of 
+                      #brms predict
+                        predict(model[[1]])[,1], 
+                        plot = FALSE, 
+                        family = family, 
+                        phis = 1/shape)
+    dsdf <- bind_cols(dat, 
+                      fitted = predict(model[[1]])[,1],
+                      resid = resids)
+    g1 <- ggplot(dsdf) + 
+      aes(x = fitted, y = resid, color = x2) + 
+      geom_point()  +
+      ggtitle(paste_(form, family, prior))
+    #save plot to file 
+    # ggsave(g1, file = paste0("figures/model-", ID, ".png"))
+    list(g1)
+  })
+dsplots[[6]]
+
+```
+
+If our expression fits on one line, it is easier to use map. For instance, below we identify the best model as chosen by the LOO criteria: 
+
+```{r eval = FALSE}
+library(purrr)
+dfloo <- dout$model %>%
+  map(~data.frame(loo(.x)$estimates[3,1])) %>%
+  setNames(dfsim$ID) %>%
+  bind_rows(.id = "ID")
+
+dfsim[which.min(dfloo$loo..x..estimates.3..1.),]
+```
+
+
+
+
+
+
+

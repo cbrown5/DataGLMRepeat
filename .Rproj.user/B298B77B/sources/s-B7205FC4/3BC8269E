@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581824536710.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3BC8269E",
+    "lastKnownWriteTime" : 1581824732,
+    "last_content_update" : 1581824732720,
+    "path" : "C:/Documents/Code/ModelTools/R/paste_.R",
+    "project_path" : "R/paste_.R",
+    "properties" : {
+        "cursorPosition" : "9,22",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

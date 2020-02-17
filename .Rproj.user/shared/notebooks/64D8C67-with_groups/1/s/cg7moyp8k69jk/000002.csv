@@ -1,0 +1,6 @@
+"0","library(dplyr)"
+"0","library(DataGLMRepeat)"
+"0","dat <- tibble("
+"0","  grp = sample(c(1, 2, 3), 100, replace = TRUE), "
+"0","  x = (1:100)/100, "
+"0","  y = rpois(100, lambda = exp(grp + x*2)))"

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581895968648.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "FE7D67F5",
+    "lastKnownWriteTime" : 1581899682,
+    "last_content_update" : 1581899682767,
+    "path" : "C:/Documents/Code/DataGLMRepeat/R/with_groups.R",
+    "project_path" : "R/with_groups.R",
+    "properties" : {
+        "cursorPosition" : "42,3",
+        "scrollLine" : "22"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

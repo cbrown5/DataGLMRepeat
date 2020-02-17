@@ -1,0 +1,14 @@
+# Tools that aid statistical modelling 
+
+ CJ Brown  2020
+ 
+ 
+ TODO:
+ List functions here
+ Do model checking vignette with ds resid 
+ and with semivariance
+ 
+ Add spatial df to the example vignette
+ 
+ Try out group function in abyesian case
+ 

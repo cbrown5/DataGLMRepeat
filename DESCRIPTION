@@ -1,0 +1,22 @@
+Package: DataGLMRepeat
+Type: Package
+Title: A few handy tools for automating GLM fits 
+Version: 1.0
+Date: 2020-02-12
+Author: Christopher James Brown
+Maintainer: Chris Brown <christo.j.brown@gmail.com>
+Description: These are some basic tools for ecostats I commonly use in my own
+    work.
+Depends: tidyr
+Suggests: sf,
+    MASS, 
+    knitr,
+    rmarkdown,
+    ggplot2, 
+    dplyr, 
+    purrr, 
+    brms, 
+    visreg
+License: MIT + file LICENSE
+RoxygenNote: 7.0.2
+VignetteBuilder: knitr

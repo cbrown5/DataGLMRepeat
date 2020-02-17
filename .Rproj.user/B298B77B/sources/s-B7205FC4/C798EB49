@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581762781254.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C798EB49",
+    "lastKnownWriteTime" : 1581853411,
+    "last_content_update" : 1581853411508,
+    "path" : "C:/Documents/Code/ModelTools/vignettes/glm-model-checking.Rmd",
+    "project_path" : "vignettes/glm-model-checking.Rmd",
+    "properties" : {
+        "cursorPosition" : "146,0",
+        "last_setup_crc32" : "B7205FC430022515",
+        "scrollLine" : "141",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
