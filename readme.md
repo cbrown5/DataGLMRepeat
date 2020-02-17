@@ -21,7 +21,9 @@ This package also has some vignette guides to model checking, to access those do
 
 Then to get started in R see `vignette("checking-multiple-models")` and `vignette("with_groups")`. 
 
+To see all available functions do: `help(package = "DataGLMRepeat")`
+
  
 TODO:
 Add vignette with advice on checking spatial residuals, 
-including example with sf and generating model for spatial AC
+including example with gam, sf and generating model for spatial AC
