@@ -2,4 +2,4 @@
 .Rhistory
 .Rapp.history
 .Rproj
-^\.Rproj\.user$
+.Rproj.user*
