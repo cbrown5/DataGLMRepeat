@@ -1,8 +1,0 @@
-"0","n <- 50"
-"0","a <- 1"
-"0","beta <- cbind(1,2)"
-"0","x <- rbind(runif(n), runif(n))"
-"0","linpred <- a + beta %*% x"
-"0","dat <- data.frame(x1 = x[1,],"
-"0","                  x2 = x[2,], "
-"0","                  y = rpois(n, exp(linpred)))"

@@ -1,3 +1,0 @@
-"0","library(ModelTools)"
-"0","dat <- dplyr::bind_cols(dat, data.frame(predict(m1)))"
-"0","m1_resids <- with(dat, ds_resids(y, Estimate, family = ""poisson""))"
