@@ -16,6 +16,7 @@
 #' should look for fanning or evidence of non-linearities.
 #' Code is based on that from the boral package (boral::ds.residuals)
 #' This function is set-up for Poisson, Binomial and Negative binomial models. 
+#' NB: the phi parameter for brms models lives in: summary(m1)$spec_pars
 #'
 #' @examples 
 #' data(InsectSprays)
@@ -56,9 +57,10 @@ ds_resids <- function(yobs, ypred, plotds = TRUE,
   
 	u <- runif(n = length(yobs), min = a, max = b)
 	dsres <- qnorm(u)
+	#check this
 	if (plotds){
 		par(mfrow = c(1,2))
-		plot(ypred, dsres, ylab = "Prediction", xlab = "Dunn-Smyth residual")
+		plot(ypred, dsres, xlab = "Prediction", ylab = "Dunn-Smyth residual")
 		abline(h=0)
 		qqnorm(dsres)
 		abline(0,1)
