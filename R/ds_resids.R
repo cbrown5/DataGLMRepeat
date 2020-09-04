@@ -63,7 +63,7 @@ ds_resids <- function(yobs, ypred, plotds = TRUE,
 		plot(ypred, dsres, xlab = "Prediction", ylab = "Dunn-Smyth residual")
 		abline(h=0)
 		qqnorm(dsres)
-		abline(0,1)
+		qqline(dsres)
 	}
 	return(dsres)
 	}
